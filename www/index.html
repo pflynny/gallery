@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<!--[if IE 9]> <html class="ie9 no-js" lang="en"><![endif]-->
+<!--[if !IE]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+    <meta charset="UTF-8"/>
+    <meta name='keywords' content=''>
+    <meta name='description' content=''>
+
+    <!-- open graph -->
+    <meta property="og:url" content="" />
+    <meta property="og:title" content="" />
+    <meta property="og:image" content="/logo.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="400">
+    <meta property="og:image:height" content="400">
+    <!-- end:features -->
+
+    <!-- features -->
+    <meta name='viewport' content="width=device-width, minimum-scale=1">
+    <meta content="telephone=no" name="format-detection">
+    <!-- end:features -->
+
+    <title>Example</title>
+
+
+    <!-- styles -->
+    <link rel="stylesheet" href="assets/css/screen.min.css" />
+    <!-- end:styles -->
+
+    <!-- js-support -->
+    <noscript>
+        <style type='text/css'>
+            .no-js-hide { display: none !important; }
+        </style>
+    </noscript>
+    <script type="text/javascript">
+        document.write("<style type='text/css'>.js_hide{display:none;}</style>");
+    </script>
+    <!-- end:js-support -->
+
+
+</head>
+<body>
+
+<div class="wrapper">
+    <div class="header">
+        <h1>Somebody</h1>
+        <ul class='block-list clean-link-list nav mt-s'>
+            <li><a href="link-one.html">Link one</a></li>
+            <li><a href="link-two.html">link two</a></li>
+            <li><a href="link-three.html">link three</a></li>
+        </ul>
+
+        <ul class="social block-list clean-link-list nav text-right">
+            <li><a href="">Facebook</a></li>
+            <li><a href="">Twitter</a></li>
+            <li><a href="">LinkdIn</a></li>
+        </ul>
+
+        <!-- <a href="#footer" class='mobile-menu'>Menu</a> -->
+    </div>
+
+    <div class="image-container">
+        <div class="row">
+
+            <div class="image first">
+                <img src="/images/bike-polo-01.jpg" alt="">
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+
+<!-- scripts -->
+<!--<script src="assets/js/site.js"></script>-->
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="assets/js/site.min.js"></script>
+<script>
+
+    function scroll() {
+        $("body").mousewheel(function(event, delta) {
+                this.scrollLeft -= (delta * 30);
+                event.preventDefault();
+        });
+    }
+
+    function thirty_pc() {
+        var height = $(window).height();
+        var thirtypc = (80 * height) / 100;
+        thirtypc = parseInt(thirtypc) + 'px';
+        $(".image > img").css('height',thirtypc);
+    }
+
+    (function() {
+
+        var Site = {
+            init: function() {
+                thirty_pc();
+                scroll();
+            },
+            start: function() {
+                document.addEventListener("DOMContentLoaded", this, false);
+            },
+            handleEvent: function(e) {
+                switch(e.type) {
+                    case "DOMContentLoaded":
+                        this.init();
+                        break;
+                }
+            }
+        };
+
+        if (document.readyState !== "complete") {
+            Site.start();
+        } else {
+            Site.init();
+        }
+
+    })();
+
+</script>
+
+<!--<script src="//localhost:35729/livereload.js"></script>-->
+
+<!-- end:scripts-->
+
+
+
+</body>
+</html>
