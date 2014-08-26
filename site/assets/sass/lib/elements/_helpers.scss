@@ -1,0 +1,335 @@
+
+// -----------------------------------------------------------------------------
+// Positioning - Absolute, Floating and Clearfixing
+// -----------------------------------------------------------------------------
+
+%relative   { position: relative; }
+%absolute   { position: absolute; }
+
+.absolute   { @extend %absolute; }
+.relative   { @extend %relative; }
+
+.left       { float:left; }
+.right      { float:right; }
+
+
+.absolute--bottom-left {
+  @extend %absolute;
+  bottom:0;
+  left:0;
+}
+
+.absolute--bottom-right {
+  @extend %absolute;
+  bottom:0;
+  right:0;
+}
+
+.absolute--top-left {
+  @extend %absolute;
+  top:0;
+  left:0;
+}
+
+.absolute--top-right {
+  @extend %absolute;
+  top:0;
+  right:0;
+}
+
+%center-element {
+  margin-left:auto;
+  margin-right:auto;
+}
+
+
+// Vertical alignment utilities
+
+%align--top {
+  vertical-align: top ;
+}
+
+%align--middle {
+  vertical-align: middle;
+}
+
+%align--baseline {
+  vertical-align: baseline;
+}
+
+%align--bottom {
+  vertical-align: bottom;
+}
+
+
+.align--top {
+  @extend %align--top;
+}
+
+.align--middle {
+  @extend %align--middle;
+}
+
+.align--baseline {
+  @extend %align--baseline;
+}
+
+.align--bottom {
+  @extend %align--bottom;
+}
+
+// -----------------------------------------------------------------------------
+// Inline block
+// -----------------------------------------------------------------------------
+// zoom fix for IE6/7 so they correctly display inline-block elements
+// (forces hasLayout)
+
+/**
+### Inline blocks
+
+Inline blocks are handy for everything. We don't often support projects in IE7 and
+below, but since it's trivial to hack it in, we've included it here.
+
+To cut down on rules in your stylesheet, you can extend this placeholder in your code.
+
+```
+%inline-block {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+}
+
+
+.my-icon {
+    @extend %inline-block;
+}
+
+```
+
+*/
+
+%inline-block {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+}
+
+.inline-block { @extend %inline-block; }
+.block-element { display: block; }
+
+%border {
+  border-width: 1px;
+  border-style: solid;
+}
+
+
+/**
+### Clearfixing
+
+Table-pseudo element clearfix. It is good.
+
+```scss
+.my-floater {
+    @extend %clearfix;
+}
+```
+
+Or, heaven forbid, in your markup:
+
+```html
+<div class='clearfix'>
+    <div class='left'>
+        Hey i'm floating!
+    </div>
+</div>
+```
+
+*/
+
+%clearfix{
+  /**
+   * For IE 6/7 only
+   * Include this rule to trigger hasLayout and contain floats.
+   */
+  *zoom: 1;
+}
+
+%clearfix:before {
+  content: " "; /* 1 */
+  display: table; /* 2 */
+}
+
+%clearfix:after {
+  clear: both;
+  content: " "; /* 1 */
+  display: table; /* 2 */
+}
+
+.clearfix           { @extend %clearfix; }
+.overflow-hidden    { overflow: hidden; }
+
+
+
+/**
+
+###Screen reader content
+
+We've found some odd bugs with the -999px textindent hack.
+Clipping is much better since it doesn't require a 999 x [your-line-height]px region to be drawn.
+
+This is borrowed from Bootstrap.
+
+```html
+ <a class="sr-only" href="#content">Skip to main content</a>
+```
+
+*/
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+}
+
+// -----------------------------------------------------------------------------
+// Fix webkit bug
+// -----------------------------------------------------------------------------
+
+
+/**
+
+### Fixing Chrome/WebKit type rendering
+
+Since v22, Chrome makes fat sausage horrible web typography. Fix it with
+these properties right here:
+
+```html
+<div class='my-black-box antialiased'>
+    <h1>Knocked out white text!</h1>
+</div>
+```
+
+But wait! That screws with everything on Windows Vista Chrome... right?
+
+Yeah, it does. If you're using our [Browser.js](http://springload.github.io/Browser.js),
+it'll automatically add `isWindowsChrome` to the documentElement, and we set
+the antialiasing back to classic sub-pixel mode:
+
+```scss
+.isWindowsChrome %fix-webkit-font-rendering  {
+    -webkit-font-smoothing: subpixel-antialiased;
+}
+```
+
+In your markup:
+```html
+<html class='isWindowsChrome'>
+
+<!-- some time later -->
+
+<div class='my-black-box antialiased'>
+    <h1>Hey i'll look good on Vista!</h1>
+</div>
+
+```
+*/
+
+%fix-webkit-font-rendering {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+
+}
+
+.isWindowsChrome %fix-webkit-font-rendering  {
+  -webkit-font-smoothing: subpixel-antialiased;
+}
+
+.antialiased {
+  @extend %fix-webkit-font-rendering;
+}
+
+
+/**
+### Magic tricks
+
+Showing and hiding things with a pre-emptive `important`
+
+```html
+<div class='hide'>Shorthand display: none !important;</div>
+<div class='show'>Shorthand display: block !important;</div>
+<div class='hidden'>Shorthand visibility: hidden !important;</div>
+<div class='visible'>Shorthand visibility: visible !important;</div>
+```
+
+*/
+
+
+%hide { display: none !important; }
+%show { display: block !important; }
+
+.hide { @extend %hide; }
+.show { @extend %show; }
+
+%visible    {visibility: visible !important;}
+%hidden     {visibility: hidden !important;}
+
+
+
+// Hide an element, but make it visible to screen readers
+// ----------------------------------------------------------------------------
+
+%visually-hidden {
+  clip: rect(0 0 0 0);
+  height: 1px; width: 1px;
+  margin: -1px; padding: 0; border: 0;
+  overflow: hidden;
+  position: absolute;
+}
+
+
+/**
+
+### Append and Prepend
+
+Place something before or after an element
+
+```html
+<p class="prepend" data-prepend="email:">&nbsp;email@gmail.com</p>
+<p class="append" data-append="is my email">email@gmail.com&nbsp;</p>
+```
+
+*/
+
+.prepend{
+  &:before{
+    content: attr(data-prepend);
+    display: inline-block;
+  }
+}
+
+.append{
+  &:after{
+    content: attr(data-append);
+    display: inline-block;
+  }
+}
+
+// A link without any text-decoration at all.
+%clean-link {
+  &:hover,
+  &:active,
+  &:focus {
+    text-decoration: none;
+  }
+  text-decoration: none;
+}
+
+
+
+
+

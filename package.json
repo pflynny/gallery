@@ -1,0 +1,20 @@
+{
+  "name": "roblow-site",
+  "version": "0.0.1",
+  "devDependencies": {
+    "gulp": "^3.8.7",
+    "gulp-rename": "^1.2.0",
+    "del": "^0.1.2",
+    "gulp-uglify": "^0.3.1",
+    "gulp-concat": "^2.3.4",
+    "gulp-minify-css": "^0.3.7",
+    "gulp-ruby-sass": "^0.7.1",
+    "gulp-livereload": "^2.1.1",
+    "gulp-notify": "^1.5.0",
+    "gulp-jshint": "^1.8.4",
+    "gulp-cache": "^0.2.1",
+    "gulp-autoprefixer": "0.0.8",
+    "gulp-imagemin": "^1.0.0"
+  },
+  "dependencies": {}
+}

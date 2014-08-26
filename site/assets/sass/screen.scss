@@ -1,0 +1,155 @@
+@import "lib/setup";
+@import "custom-helpers";
+
+
+body {
+  background: #F0F0F0;
+}
+
+a {
+    color: $base-link-color;
+    &:hover {
+        color: $base-link-hover-color;
+    }
+
+}
+
+.wrapper {
+    min-height: 360px;
+    @include media(large) {
+        bottom: 0;
+        height: 80%;
+        padding: 7% 100px 0 0;
+        position: absolute;
+        top: 0;
+    }
+}
+
+
+.wrapper {
+
+    @include media(small-only) {
+        max-width: 100%;
+        padding: 0 .75em;
+    }
+    @include media(medium-only) {
+        max-width: 100%;
+        padding: 0 3em;
+    }
+}
+img {
+    @include media(medium-down) {
+        max-width: 100%;
+        max-height: 100%;
+        height: auto!important;
+        margin: 5px 0;
+    }
+}
+
+
+.mobile-menu {
+    display: none;
+    @include media(large-down){
+        display: block;
+    }
+}
+
+#start {
+    @include media(small-only) {
+        display: none;
+    }
+}
+
+// .image img {
+//     max-width: 100%;
+//     max-height: 100%;
+// }
+@include media(large) {
+    .image-container {
+        // height: 600px;
+        // width: 4000px;
+        position: relative;
+        display: table;
+
+        .image:first-child,
+        .first {
+            padding-left: 226px;
+        }
+
+        .row {
+            display: table-row;
+
+            .image {
+                // max-width: 100%;
+                // float: left;
+                // display: inline-block;
+                // margin: 0 15px;
+                display: table-cell;
+            }
+
+            img {
+                // max-width: 100%;
+                // max-width: 100%;
+                // max-height: 100%;
+                // height: auto !important;
+                // display: inline-block;
+                margin: 0 10px;
+            }
+
+        }
+
+    }
+}
+
+.text {
+    text-align: center;
+    vertical-align: middle;
+    display: table-cell;
+    > a {
+        @include media(large){
+            display: block;
+            width: auto;
+            padding: 20px 309px;
+            white-space: nowrap;
+            text-decoration: none;
+        }
+        &:hover {
+            opacity: 0.75;
+            text-decoration: underline;
+        }
+    }
+}
+//
+.example {
+    position: absolute;
+    left: 0;
+}
+
+.header {
+    @include media(large){
+
+      position: fixed;
+        left: 0px;
+        background: rgba(255, 255, 255, 0.8);
+        padding: 20px 37px 380px;
+        z-index: 9;
+//        @extend text-right;
+    }
+
+    @include media(medium-down) {
+        ul {
+            display: none;
+        }
+    }
+    .social {
+        position: absolute;
+        bottom: 20px;
+        right: 38px;
+    }
+
+}
+
+
+.nav {
+  text-align: right;
+}

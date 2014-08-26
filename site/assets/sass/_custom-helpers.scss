@@ -1,0 +1,69 @@
+
+
+
+
+%clean-link {
+  &:hover,
+  &:active,
+  &:focus {
+    text-decoration: none;
+  }
+  text-decoration: none;
+}
+
+
+// A link with out any text decoration
+.clean-link {
+  @extend %clean-link;
+}
+
+
+// A list without any text decoration commonly used in vertical navigation lists
+.clean-link-list a {
+  @extend %clean-link;
+}
+
+
+
+.list-unstyled {
+  list-style: none;
+  margin-bottom: 0;
+  padding-left: 0;
+}
+
+.list-unstyled > li {
+  list-style: none;
+  //        margin: 0;    // There isn't usually a margin set on li's...
+}
+
+.list--inline {
+  @extend .clearfix; /* This extend is found in core */
+  @extend .list-unstyled;
+}
+
+.list--inline > li {
+  @extend %inline-block; /* This extend is found in core */
+  margin: 0;
+}
+
+//default list style in this case its circles
+%list-styled {
+  margin-top: $bs-xs; //same as the margin top on p tags
+  padding-left: $bs-m;
+}
+
+
+.list-styled {
+  @extend %list-styled;
+  list-style: circle;
+}
+
+
+
+.block-list {
+  @extend .list-unstyled;
+  > li {
+    display: block;
+  }
+}
+
