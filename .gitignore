@@ -47,5 +47,5 @@ node_modules
 _from-client
 www/images/*
 www/assets/images/*
-www/index.html
+www/index-backup.html
 www/collection-*.html
